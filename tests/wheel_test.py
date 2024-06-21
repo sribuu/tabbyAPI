@@ -16,11 +16,11 @@ else:
     errored_packages.append("flash_attn")
 
 if find_spec("exllamav2") is not None:
-    print(f"Exllamav2 on version {version('exllamav2')} " "successfully imported")
-    successful_packages.append("exllamav2")
+    print(f"LLM Backend on version {version('exllamav2')} " "successfully imported")
+    successful_packages.append("llm_backend")
 else:
-    print("Exllamav2 is not found in your environment.")
-    errored_packages.append("exllamav2")
+    print("LLM Backend is not found in your environment.")
+    errored_packages.append("llm_backend")
 
 if find_spec("torch") is not None:
     print(f"Torch on version {version('torch')} successfully imported")

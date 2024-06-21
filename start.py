@@ -78,7 +78,7 @@ def get_install_features(lib_name: str = None):
         # Exit if using AMD and Windows
         if platform.system() == "Windows":
             print(
-                "ERROR: TabbyAPI does not support AMD and Windows. "
+                "ERROR: API does not support AMD and Windows. "
                 "Please use Linux and ROCm 6.0. Exiting."
             )
             sys.exit(0)
@@ -130,7 +130,7 @@ def add_start_args(parser: argparse.ArgumentParser):
         "-nw",
         "--nowheel",
         action="store_true",
-        help="Don't upgrade wheel dependencies (exllamav2, torch)",
+        help="Don't upgrade wheel dependencies (llm_backend, torch)",
     )
     start_group.add_argument(
         "--gpu-lib",

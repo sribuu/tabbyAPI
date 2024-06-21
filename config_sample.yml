@@ -10,15 +10,15 @@
 network:
   # The IP to host on (default: 127.0.0.1).
   # Use 0.0.0.0 to expose on all network adapters.
-  host: 127.0.0.1
+  host: 0.0.0.0
 
   # The port to host on (default: 5000).
-  port: 5000
+  port: 5300
 
   # Disable HTTP token authentication with requests.
   # WARNING: This will make your instance vulnerable!
   # Turn on this option if you are ONLY connecting from localhost.
-  disable_auth: false
+  disable_auth: true
 
   # Send tracebacks over the API (default: False).
   # NOTE: Only enable this for debug purposes.
