@@ -9,7 +9,7 @@
 network:
   # The IP to host on (default: 127.0.0.1).
   # Use 0.0.0.0 to expose on all network adapters
-  host: 127.0.0.1
+  host: 0.0.0.0
 
   # The port to host on (default: 5000)
   port: 5000
@@ -17,7 +17,7 @@ network:
   # Disable HTTP token authenticaion with requests
   # WARNING: This will make your instance vulnerable!
   # Turn on this option if you are ONLY connecting from localhost
-  disable_auth: False
+  disable_auth: True
 
 # Options for logging
 logging:
@@ -37,7 +37,7 @@ sampling:
 
 # Options for development and experimentation
 developer:
-  # Skips exllamav2 version check (default: False)
+  # Skips backend version check (default: False)
   # It's highly recommended to update your dependencies rather than enabling this flag
   # WARNING: Don't set this unless you know what you're doing!
   #unsafe_launch: False
@@ -69,7 +69,7 @@ model:
 
   # Max sequence length (default: Empty)
   # Fetched from the model's base sequence length in config.json by default
-  #max_seq_len:
+  max_seq_len: 64000
 
   # Overrides base model context length (default: Empty)
   # WARNING: Don't set this unless you know what you're doing!
@@ -112,7 +112,7 @@ model:
 
   # Chunk size for prompt ingestion. A lower value reduces VRAM usage at the cost of ingestion speed (default: 2048)
   # NOTE: Effects vary depending on the model. An ideal value is between 512 and 4096
-  #chunk_size: 2048
+  chunk_size: 4096
 
   # Set the maximum amount of prompts to process at one time (batch)
   # This will be automatically adjusted depending on the cache size.

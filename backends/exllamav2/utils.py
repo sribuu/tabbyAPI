@@ -11,7 +11,7 @@ def check_exllama_version():
     current_version = version.parse(package_version("exllamav2").split("+")[0])
 
     unsupported_message = (
-        f"ERROR: TabbyAPI requires ExLlamaV2 {required_version} "
+        f"ERROR: API requires LLM backend version {required_version} "
         f"or greater. Your current version is {current_version}.\n"
         "Please upgrade your environment by running a start script "
         "(start.bat or start.sh)\n\n"
@@ -28,7 +28,7 @@ def check_exllama_version():
     if current_version < required_version:
         raise SystemExit(unsupported_message)
     else:
-        logger.info(f"ExllamaV2 version: {current_version}")
+        logger.info(f"LLM backend version: {current_version}")
 
 
 def hardware_supports_flash_attn(gpu_device_list: list[int]):

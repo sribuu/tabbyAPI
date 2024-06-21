@@ -44,7 +44,7 @@ async def entrypoint(args: Optional[dict] = None):
 
     if unwrap(developer_config.get("unsafe_launch"), False):
         logger.warning(
-            "UNSAFE: Skipping ExllamaV2 version check.\n"
+            "UNSAFE: Skipping LLM backend version check.\n"
             "If you aren't a developer, please keep this off!"
         )
     else:

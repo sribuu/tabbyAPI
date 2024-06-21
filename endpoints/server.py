@@ -7,8 +7,8 @@ from common.logger import UVICORN_LOG_CONFIG
 from endpoints.OAI.router import router as OAIRouter
 
 app = FastAPI(
-    title="TabbyAPI",
-    summary="An OAI compatible exllamav2 API that's both lightweight and fast",
+    title="LocalLlmAPI",
+    summary="An OAI compatible Local LLM API",
     description=(
         "This docs page is not meant to send requests! Please use a service "
         "like Postman or a frontend UI."
