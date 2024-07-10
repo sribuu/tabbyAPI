@@ -618,7 +618,8 @@ class ExllamaV2Container:
 
         self.model = ExLlamaV2(self.config)
         if not self.quiet:
-            logger.info("Loading model: " + self.config.model_dir)
+            # logger.info("Loading model: " + self.config.model_dir)
+            logger.info("Loading model..")
 
         # Get class of the model cache
         cache_class = self.get_cache_class(self.cache_mode)
