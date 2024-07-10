@@ -569,7 +569,8 @@ class ExllamaV2Container:
 
         self.model = ExLlamaV2(self.config)
         if not self.quiet:
-            logger.info("Loading model: " + self.config.model_dir)
+            # logger.info("Loading model: " + self.config.model_dir)
+            logger.info("Loading model..")
 
         # Load model with manual split
         # Entrypoint for single GPU users

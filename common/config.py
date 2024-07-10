@@ -19,7 +19,7 @@ def from_file(config_path: pathlib.Path):
         logger.error(
             "The YAML config couldn't load because of the following error: "
             f"\n\n{exc}"
-            "\n\nTabbyAPI will start anyway and not parse this config file."
+            "\n\nLocal LLM API will start anyway and not parse this config file."
         )
         GLOBAL_CONFIG = {}
 
