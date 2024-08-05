@@ -32,14 +32,6 @@ This project is marked rolling release. There may be bugs and changes down the l
 
 TabbyAPI is a hobby project solely for a small amount of users. It is not meant to run on production servers. For that, please look at other backends that support those workloads.
 
-## Getting Started
-
-> [!IMPORTANT]
-> 
->  This README is not for getting started. Please read the Wiki.
-
-Read the [Wiki](https://github.com/theroyallab/tabbyAPI/wiki/1.-Getting-Started) for more information. It contains user-facing documentation for installation, configuration, sampling, API usage, and so much more.
-
 ## Supported Model Types
 
 TabbyAPI uses Exllamav2 as a powerful and fast backend for model inference, loading, etc. Therefore, the following types of models are supported:
@@ -63,6 +55,50 @@ If you want to use a different model type or quantization method than the ones l
 - Production ready + batching - [VLLM](https://github.com/vllm-project/vllm)
 
 - [Text Generation WebUI](https://github.com/oobabooga/text-generation-webui)
+
+## Getting Started
+
+### Choose Models
+
+Find the model you want on [huggingface models](https://huggingface.co/models) with exl2 quantization. For example: `bartowski/Qwen2-7B-Instruct-exl2`
+
+### Build and Run Service Using Docker
+
+Edit the variables in `docker.sh` file.
+```
+MODEL_NAME=bartowski/Qwen2-7B-Instruct-exl2 -> repo name
+REVISION=6_5                                -> the specific model version to use (quantization bits in this case)
+TAG=qwen2-7b                                -> docker image tag
+PORT=5000                                   -> exposed port
+```
+
+Build service
+```bash
+bash docker.sh build
+```
+
+Run service
+```bash
+bash docker.sh start
+```
+
+Stop service
+```bash
+docker stop llm_onprem
+```
+
+### Test Service using Curl
+
+Example:
+```bash
+curl http://127.0.0.1:5000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+     "model": "test",
+     "messages": [{"role": "user", "content": "Say this is a test!"}],
+     "temperature": 0.7
+   }'
+```
 
 ## Contributing
 
