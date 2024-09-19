@@ -63,6 +63,7 @@ RUN cd tabbyAPI && \
     huggingface-cli download $MODEL_NAME --revision $REVISION --local-dir compiled/$MODEL_PATH --local-dir-use-symlinks False && \
     cd ../ && \
     mv tabbyAPI service && \
+    sed -i "s/config = self.from_file/config = self._from_file/" service/common/tabby_config.py && \
     pyarmor gen -O dist -r service/ && \
     touch /home/config.yml && \
     mv dist/pyarmor_runtime_000000 dist/service/ && \
@@ -71,18 +72,20 @@ RUN cd tabbyAPI && \
     sed -i "s/model_name:.*/model_name: ${MODEL_PATH}/" dist/service/endpoints/deploy.yml && \
     sed -i "s/model_dir:.*/model_dir: \/opt\/dist\/service\/compiled/" dist/service/endpoints/deploy.yml && \
     sed -i "s/disable_auth:.*/disable_auth: True/" dist/service/endpoints/deploy.yml && \
-    sed -i "s/max_seq_len:.*/max_seq_len: 32000/" dist/service/endpoints/deploy.yml && \
+    sed -i "s/#max_seq_len:.*/max_seq_len: 32000/" dist/service/endpoints/deploy.yml && \
+    sed -i "s/port:.*/port: 5300/" dist/service/endpoints/deploy.yml && \
+    sed -i "s/host:.*/host: 0.0.0.0/" dist/service/endpoints/deploy.yml && \
     rm -f dist/service/compiled/deployed/{LICENSE,*.md} && \
     rm -rf service/
 
 # Expose Port
-EXPOSE 5000
+EXPOSE 5300
 
 # Entrypoint
 CMD ["python3", "/opt/dist/service/main.py", "--config", "/opt/dist/service/endpoints/deploy.yml"]
 
 # Disable bash
-RUN rm -rf /bin/bash /bin/sh
+# RUN rm -rf /bin/bash /bin/sh
 
 # Set the working directory in the container
 WORKDIR /home
