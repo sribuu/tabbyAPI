@@ -64,6 +64,7 @@ RUN cd tabbyAPI && \
     cd ../ && \
     mv tabbyAPI service && \
     sed -i "s/config = self.from_file/config = self._from_file/" service/common/tabby_config.py && \
+    sed -i 's/config_override = args.get("options"/config_override = args.get("config"/' service/common/tabby_config.py && \
     pyarmor gen -O dist -r service/ && \
     touch /home/config.yml && \
     mv dist/pyarmor_runtime_000000 dist/service/ && \
